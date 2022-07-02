@@ -13,7 +13,7 @@ export const obtenerCita: (personaje?: string) => Promise<ICita> = async (
   const [data] = await respuesta.json();
 
   const dataNormalizada = {
-    cita: data.quote,
+    cita: data.cita,
     personaje: data.character,
     imagen: data.image,
     direccionPersonaje: data.characterDirection,
