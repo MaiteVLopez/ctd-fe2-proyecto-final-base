@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import ContenedorModalComponent from "./ContenedorModalComponent";
-import { SuscribeImage, CloseButton as Close } from "../../assets";
 import { obtenerNoticias } from "./fakeRest";
 import {
-    CloseButton,
-    BotonLectura,
     ListaNoticias,
 } from "./styled";
 import TarjetaNoticiaComponent from "./TarjetaNoticiaComponent";
@@ -20,8 +16,6 @@ export interface INoticiasNormalizadas {
 }
 const ListaNoticiasComponent = () => {
     const [noticias, setNoticias] = useState<INoticiasNormalizadas[]>([]);
-    const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
-
     useEffect(() => {
         const obtenerInformacion = async () => {
             const respuesta = await obtenerNoticias();
@@ -49,35 +43,20 @@ const ListaNoticiasComponent = () => {
                     descripcionCorta: n.descripcion.substring(0, 100),
                 };
             });
-
             setNoticias(data);
         };
-
         obtenerInformacion();
     }, []);
-    /*el setModal deveria ser pasado en contex provider */
     return (
         <ListaNoticias>
             {
                 noticias.map((n) => (
                     <>
                         <TarjetaNoticiaComponent noticias={n} />
-                        <BotonLectura onClick={() => setModal(n)}>Ver más</BotonLectura>
                     </>
                 ))
-            }
-            {
-                modal ? (
-                    <>
-                        <ContenedorModalComponent suscribe={modal.esPremium} modal = {modal}/>
-                        <CloseButton onClick={() => setModal(null)}>
-                            <img src={Close} alt="close-button" />
-                        </CloseButton>
-                    </>
-                ) : null
             }
         </ListaNoticias>
     )
 }
-
 export default ListaNoticiasComponent;
