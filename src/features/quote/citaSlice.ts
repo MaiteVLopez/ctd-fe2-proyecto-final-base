@@ -22,6 +22,7 @@ export const obtenerCitaAsync = createAsyncThunk(
 
       return cita;
     } catch (err) {
+      console.log({err});
       throw err;
     }
   }

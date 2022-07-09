@@ -5,8 +5,7 @@ import {
   NO_ENCONTRADO,
 } from "./constants";
 
-//export default const obtenerMensaje: (
-  export  const obtenerMensaje: (
+export const obtenerMensaje: (
   cita: string,
   estadoPedido: ESTADO_FETCH
 ) => string = (cita, estadoPedido) => {

@@ -17,6 +17,7 @@ import {
     BotonSuscribir,
 } from "./styled";
 import { SuscribeImage, CloseButton as Close } from "../../assets";
+import useToggle from "./useToggle";
 
 export interface INoticiasNormalizadas {
     id: number;
@@ -29,42 +30,24 @@ export interface INoticiasNormalizadas {
 }
 
 type Props = {
-    noticias:INoticiasNormalizadas;
+    noticia:INoticiasNormalizadas;
 }
 
-const TarjetaNoticiaComponent = ({noticias}:Props) => {
-    const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
-    const ahora = new Date();
+const TarjetaNoticiaComponent = ({noticia}:Props) => {
+   // const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
+   // const [modal, setModal] = useToggle
     return(
         <>
         {
         <TarjetaNoticia>
-            <ImagenTarjetaNoticia src={noticias.imagen} />
-            <TituloTarjetaNoticia>{noticias.titulo}</TituloTarjetaNoticia>
-            <FechaTarjetaNoticia>{noticias.fecha}</FechaTarjetaNoticia>
+            <ImagenTarjetaNoticia src={noticia.imagen} />
+            <TituloTarjetaNoticia>{noticia.titulo}</TituloTarjetaNoticia>
+            <FechaTarjetaNoticia>{noticia.fecha}</FechaTarjetaNoticia>
             <DescripcionTarjetaNoticia>
-                {noticias.descripcionCorta}
+                {noticia.descripcionCorta}
             </DescripcionTarjetaNoticia>
-            <BotonLectura onClick={() => setModal(noticias)}>Ver más</BotonLectura>
+            <BotonLectura onClick={() => true}>Ver más</BotonLectura>
         </TarjetaNoticia>
-        }
-        {
-            /*
-            modal ? (
-                <>
-                    <ContenedorModalComponent suscribe={modal.esPremium} modal = {modal}/>
-                    <CloseButton onClick={() => setModal(null)}>
-                        <img src={Close} alt="close-button" />
-                    </CloseButton>
-                </>
-            ) : null
-            */
-            modal ? (
-                <>
-                <ContenedorModalComponent noticiaModal={modal} modal = {true}/>
-                <>{ahora.getTime()}</>
-                </>
-              ) : null
         }
         </>
     )
