@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import citaReducer from "../features/cita/citaSlice";
+import citaReducer from "../features/quote/citaSlice";
 import { RootState } from "../app/store";
 
 // Creamos el custom render
@@ -27,10 +27,10 @@ const customRender = (
     children: React.ReactNode;
   }> = ({ children }) => <Provider store={store}>{children}</Provider>;
 
-  return(render(ui, {
+  render(ui, {
     wrapper: Wrapper,
     ...renderOptions,
-  }));
+  });
 };
 
 // re-exportamos todo

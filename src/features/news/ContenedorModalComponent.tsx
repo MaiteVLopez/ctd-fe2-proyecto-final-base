@@ -14,8 +14,7 @@ import {
 } from "./styled";
 
 type Props = {
-    noticiaModal:INoticiasNormalizadas;
-    modal:boolean;
+    noticiaModal:INoticiasNormalizadas | null;
 }
 export interface INoticiasNormalizadas {
     id: number;
@@ -27,17 +26,17 @@ export interface INoticiasNormalizadas {
     descripcionCorta?: string;
 }
 
-const ContenedorModalComponent = ({noticiaModal, modal}:Props) => {
+const ContenedorModalComponent = ({noticiaModal}:Props) => {
     
-   const [suscribe, setModal] = useState<boolean | null>(true);
+   const [suscribe, setModal] = useState<INoticiasNormalizadas | null>(noticiaModal);
    
    return (
     suscribe ? (
-        noticiaModal.esPremium ? (
+        suscribe.esPremium ? (
             <>
             <ContenedorModal>
             <TarjetaModal>
-                <CloseButton onClick={() => setModal(false)}>
+                <CloseButton onClick={() => setModal(null)}>
                     <img src={Close} alt="close-button" />
                 </CloseButton>
                 <ImagenModal src={SuscribeImage} alt="mr-burns-excelent" />
@@ -66,19 +65,23 @@ const ContenedorModalComponent = ({noticiaModal, modal}:Props) => {
         (
             <ContenedorModal>
             <TarjetaModal>
-                <CloseButton onClick={() => setModal(false)}>
+                <CloseButton onClick={() => setModal(null)}>
                     <img src={Close} alt="close-button" />
                 </CloseButton>
-                <ImagenModal src={noticiaModal.imagen} alt="news-image" />
+                <ImagenModal src={suscribe.imagen} alt="news-image" />
                 <CotenedorTexto>
-                    <TituloModal>{noticiaModal.titulo}</TituloModal>
-                    <DescripcionModal>{noticiaModal.descripcion}</DescripcionModal>
+                    <TituloModal>{suscribe.titulo}</TituloModal>
+                    <DescripcionModal>{suscribe.descripcion}</DescripcionModal>
                 </CotenedorTexto>
             </TarjetaModal>
             </ContenedorModal>
         )
-    ) :<></>
-   )
+        ): <>
+        <CloseButton onClick={() => setModal(null)}>
+                    <img src={Close} alt="close-button" />
+                </CloseButton>
+        </>
+    )
 }
 
 export default ContenedorModalComponent
