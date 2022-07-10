@@ -1,61 +1,19 @@
-import { useState } from "react";
-import { INoticiasNormalizadas } from "./ContenedorModalComponent";
-import Lista from "./Lista";
-import {
-  ContenedorNoticias,
-  TituloNoticias,
-} from "./styled";
-import Modal from "./modal";
+export interface INoticias {
+  id: number;
+  titulo: string;
+  descripcion: string;
+  fecha: Date;
+  esPremium: boolean;
+  imagen: string;
+}
 
-const Noticias = () => {
-  const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
-  return (
-    <ContenedorNoticias>
-    {
-      <>
-      <TituloNoticias>Noticias de los Simpsons</TituloNoticias>
-      <Lista />
-      </>
-    }
-    {
-      modal?
-        <>
-          <Modal>
-            <Modal.Close changeState = {setModal}/>
-            <Modal.Imagen suscribe={modal.esPremium} imagen={modal.imagen}/>
-            <Modal.ContenedorTexto >
-              <Modal.ContenedorTexto.Titulo suscribe ={modal.esPremium} titulo = {modal.titulo} />
-              <Modal.ContenedorTexto.Descripcion suscribe = {modal.esPremium} descripcion = {modal.descripcion}/>
-            </Modal.ContenedorTexto>
-          </Modal>
-        </>
-          :null
-    }
-     </ContenedorNoticias>
-  );
+const simularTiempoTranscurrido: (decrementMiliseconds: number) => Date = (
+  decrementMiliseconds
+) => {
+  let time = new Date();
+  time.setMilliseconds(time.getMilliseconds() - decrementMiliseconds);
+  return time;
 };
-
-export default Noticias;
-
-/**
- * <Modal.Contenedor>
- *    <Modal.Tarjeta>
-            * <Modal.Close>
-            * <Modal.Image>
-            * <Modal.Texto>
-                    * <Modal.Titulo>
-                    * <Modal.Descripcion>
-                    * <Modal.BotonSuscribir> //visible aveces
-            * </Modal.Texto> 
-  *    <Modal.Tarjeta> 
- * </Modal.Contenedor>
- * 
- * 
- * 
- */
-
-
-//borrar:
 
 const data = [
   {
@@ -69,7 +27,7 @@ const data = [
     maletero de su coche con 1,000 galones de combustible para ganar un juguete promocional para su hija Maggie.`,
     imagen:
       "https://i2-prod.mirror.co.uk/incoming/article25142408.ece/ALTERNATES/s615b/0_SIMPSONSJPG.jpg",
-    fecha: 3,
+    fecha: simularTiempoTranscurrido(300000),
     esPremium: false,
     fuente:
       "https://www.mirror.co.uk/tv/tv-news/simpsons-fans-convinced-show-predicted-25140770",
@@ -82,7 +40,7 @@ const data = [
     en el servicio de suscripción.`,
     imagen:
       "https://i2-prod.mirror.co.uk/incoming/article24436503.ece/ALTERNATES/n310p/0_DISNEY.jpg",
-    fecha: 2,
+    fecha: simularTiempoTranscurrido(1200000),
     esPremium: false,
     fuente:
       "https://www.mirror.co.uk/tv/tv-news/simpsons-teams-up-marvel-exciting-24435616",
@@ -97,9 +55,17 @@ const data = [
     expresar su sorpresa ya que la serie había previsto otro gran evento.`,
     imagen:
       "https://i2-prod.mirror.co.uk/incoming/article24547200.ece/ALTERNATES/s615b/0_EHP_CHP_160721The-Simpsons_53631JPG.jpg",
-    fecha: 6,
+    fecha: simularTiempoTranscurrido(1200000),
     esPremium: true,
     fuente:
       "https://www.mirror.co.uk/tv/tv-news/simpsons-correctly-predicts-future-again-24547074",
   },
 ];
+
+export const obtenerNoticias: () => Promise<INoticias[]> = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(data);
+    }, 1000);
+  });
+};

@@ -10,7 +10,7 @@ export const generateHandlers = () => {
  
     handlers = [
       rest.get(API_URL, (req, res, ctx) => {
-        if (req.url.searchParams.get("personaje") === 'Ap') {
+        if (req.url.searchParams.get("character") === 'Ap') {
           return res(
                      ctx.json({
                     results: data,
