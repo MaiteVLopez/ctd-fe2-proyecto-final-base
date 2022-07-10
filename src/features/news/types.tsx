@@ -6,5 +6,4 @@ export interface INoticiasNormalizadas {
     esPremium: boolean;
     imagen: string;
     descripcionCorta?: string;
-    modal?:boolean;
 }

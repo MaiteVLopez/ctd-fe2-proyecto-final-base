@@ -3,18 +3,18 @@ import { ImagenModal } from "../styled";
 
 type Props = {
   suscribe: boolean;
-  imagen:string;
+  imagen: string;
 }
 
-const ImageModal = ({suscribe, imagen}:Props) => {
+const ImageModal = ({ suscribe, imagen }: Props) => {
   return (
     <>
-    {
-      suscribe ? 
-      (<ImagenModal src={SuscribeImage} alt="mr-burns-excelent" />):
+      {
+        suscribe ?
+          (<ImagenModal src={SuscribeImage} alt="mr-burns-excelent" />) :
 
-      (<ImagenModal src={imagen} alt="news-image" />)
-    }
+          (<ImagenModal src={imagen} alt="news-image" />)
+      }
     </>
   );
 

@@ -1,18 +1,15 @@
 
 import { CloseButton } from '../styled';
 import { CloseButton as Close } from "../../../assets";
-import useModal from '../CustomModal';
-import React, { useState } from 'react';
-import { INoticiasNormalizadas } from '../ContenedorModalComponent';
 
-const CloseModal = ({handleClose}:any) => {
- 
+const CloseModal = ({ handleClose }: any) => {
+
   return (
     <CloseButton onClick={handleClose}>
       {
-      <>
-      <img src={Close} alt="close-button" />
-      </>
+        <>
+          <img src={Close} alt="close-button" />
+        </>
       }
     </CloseButton>
   );

@@ -12,18 +12,18 @@ import ImageModal from "./ImageModal";
 import Titulo from "./Titulo";
 
 type Props = {
-    children:ReactNode;
+    children: ReactNode;
 }
 
 
-const Modal = ({children}:Props) => {
-   return (
+const Modal = ({ children }: Props) => {
+    return (
         <ContenedorModal >
             <TarjetaModal>
                 {children}
             </TarjetaModal>
         </ContenedorModal>
-   )
+    )
 }
 
 export default Modal;

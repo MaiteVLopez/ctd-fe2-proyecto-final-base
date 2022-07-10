@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
-import Modal from ".";
-import { SuscribeImage } from "../../../assets";
-import { BotonSuscribir, CotenedorTexto, DescripcionModal, ImagenModal, TituloModal } from "../styled";
+import { CotenedorTexto } from "../styled";
 import Descripcion from "./Descripcion";
 import Titulo from "./Titulo";
 
@@ -12,7 +10,7 @@ type Props = {
 const ContenedorTexto = ({ children }: Props) => {
     return (
         <CotenedorTexto>
-            { children }
+            {children}
         </CotenedorTexto>
     );
 }
