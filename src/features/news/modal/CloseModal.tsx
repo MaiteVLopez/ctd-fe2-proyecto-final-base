@@ -1,21 +1,19 @@
 
-import { useCallback, useState } from 'react';
 import { CloseButton } from '../styled';
-import { INoticiasNormalizadas } from '../types';
 import { CloseButton as Close } from "../../../assets";
+import useModal from '../CustomModal';
+import React, { useState } from 'react';
+import { INoticiasNormalizadas } from '../ContenedorModalComponent';
 
-const CloseModal = (changeState:any) => {
-
-  const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
-  const toggleState = useCallback(
-    () => changeState(null),
-    [null]
-);
-
-
+const CloseModal = ({handleClose}:any) => {
+ 
   return (
-    <CloseButton onClick={() => toggleState}>
+    <CloseButton onClick={handleClose}>
+      {
+      <>
       <img src={Close} alt="close-button" />
+      </>
+      }
     </CloseButton>
   );
 

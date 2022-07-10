@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BotonLectura, DescripcionTarjetaNoticia, FechaTarjetaNoticia, ImagenTarjetaNoticia, TarjetaNoticia, TituloTarjetaNoticia } from "./styled";
 import { INoticiasNormalizadas } from "./types";
 
@@ -6,6 +7,7 @@ type Props = {
 }
 
 const Tarjeta = ( {noticia} : Props) => {
+   // const [noticia, setModal] = useState<INoticiasNormalizadas|null>(noticia);
     return (
         <>
             <TarjetaNoticia>
@@ -15,7 +17,7 @@ const Tarjeta = ( {noticia} : Props) => {
                 <DescripcionTarjetaNoticia>
                     {noticia.descripcionCorta}
                 </DescripcionTarjetaNoticia>
-                <BotonLectura onClick={() => setModal(noticia)}>Ver más</BotonLectura>
+                <BotonLectura onClick={()=>true}>Ver más</BotonLectura>
             </TarjetaNoticia>
         </>
     )
