@@ -68,7 +68,7 @@ describe("Cuando presionamos el Obtener Cita / Obtener Cita Aleatoria", () => {
       userEvent.click(button_cita);    
         await waitFor(() => {
           const p_cita = screen.getByTestId('Cita');
-          expect(p_cita).toHaveTextContent(data.cita);    
+          expect(p_cita).toHaveTextContent(data.quote);    
         });
        
       });  

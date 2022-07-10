@@ -10,7 +10,8 @@ export const obtenerCita: (personaje?: string) => Promise<ICita> = async (
 
   const url = personaje ? `${API_URL}?character=${personaje}` : API_URL;
   const respuesta = await fetch(url);
-  const [data] = await respuesta.json();
+  const {results: data} = await respuesta.json();
+
 
   const dataNormalizada = {
     cita: data.quote,
