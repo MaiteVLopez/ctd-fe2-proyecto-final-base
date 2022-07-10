@@ -2,7 +2,7 @@ import React from "react";
 import Cita from "./features/quote/Cita";
 import "./App.css";
 import Bio from "./features/bio/Bio";
-import Noticias from "./features/news";
+import Noticias from "./features/news/";
 
 function App() {
   return (
