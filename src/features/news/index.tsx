@@ -5,31 +5,25 @@ import {
   ContenedorNoticias,
   TituloNoticias,
 } from "./styled";
-import Modal from "./modal";
+import useModal from "../news/HookModal/useModal";
+import CustomModal from "./CustomModal";
 
 const Noticias = () => {
-  const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
+  const [modal, setModal] = useState<INoticiasNormalizadas|null>(data[1]);
+  const [isModalOpened, setIsModalOpened, toggleModal]  =  useModal();
   return (
     <ContenedorNoticias>
     {
       <>
       <TituloNoticias>Noticias de los Simpsons</TituloNoticias>
-      <Lista />
+      <Lista    />
       </>
     }
-    {
-      modal?
-        <>
-          <Modal>
-            <Modal.Close changeState = {setModal}/>
-            <Modal.Imagen suscribe={modal.esPremium} imagen={modal.imagen}/>
-            <Modal.ContenedorTexto >
-              <Modal.ContenedorTexto.Titulo suscribe ={modal.esPremium} titulo = {modal.titulo} />
-              <Modal.ContenedorTexto.Descripcion suscribe = {modal.esPremium} descripcion = {modal.descripcion}/>
-            </Modal.ContenedorTexto>
-          </Modal>
-        </>
-          :null
+    { modal?(
+      <CustomModal isActive={isModalOpened} 
+                   modal={modal} 
+                   handleClose = {toggleModal}/>
+    ):null
     }
      </ContenedorNoticias>
   );
@@ -51,7 +45,16 @@ export default Noticias;
  * </Modal.Contenedor>
  * 
  * 
- * 
+ *       {/**
+      <Modal >
+        <Modal.Close />
+        <Modal.Imagen suscribe={modal.esPremium} imagen={modal.imagen}/>
+        <Modal.ContenedorTexto >
+          <Modal.ContenedorTexto.Titulo suscribe ={modal.esPremium} titulo = {modal.titulo} />
+          <Modal.ContenedorTexto.Descripcion suscribe = {modal.esPremium} descripcion = {modal.descripcion}/>
+        </Modal.ContenedorTexto>
+      </Modal>
+       }
  */
 
 

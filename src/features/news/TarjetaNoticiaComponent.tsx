@@ -17,7 +17,7 @@ import {
     BotonSuscribir,
 } from "./styled";
 import { SuscribeImage, CloseButton as Close } from "../../assets";
-import useToggle from "./useToggle";
+import useToggle from "./CustomModal";
 
 export interface INoticiasNormalizadas {
     id: number;
@@ -34,8 +34,6 @@ type Props = {
 }
 
 const TarjetaNoticiaComponent = ({noticia}:Props) => {
-   // const [modal, setModal] = useState<INoticiasNormalizadas | null>(null);
-   // const [modal, setModal] = useToggle
     return(
         <>
         {

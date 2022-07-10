@@ -17,15 +17,13 @@ type Props = {
 
 
 const Modal = ({children}:Props) => {
-    
-   
    return (
-        <ContenedorModal>
+        <ContenedorModal >
             <TarjetaModal>
                 {children}
             </TarjetaModal>
         </ContenedorModal>
-        )  
+   )
 }
 
 export default Modal;
